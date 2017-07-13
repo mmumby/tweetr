@@ -67,7 +67,7 @@ $(document).ready(function(){
       });
   });
 
-//create class to manipulate css in focus state
+//create class to manipulate css in focus or blur state
   $('textarea').bind('focus blur', function (){
     $(this).toggleClass('button-focus');
   });
