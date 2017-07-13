@@ -1,108 +1,96 @@
+$(document).ready(function(){
 
-/////////////////////////////////////////////
 ////////////////////////////////////////////
-//// document ready function
-///////////////////////////////////////////
-//////////////////////////////////////////
+//// Functions to create/Load/Fetch tweets
+////////////////////////////////////////////
 
+//function to add database user information onto page with appropiate CSS properties
+  function createTweetElement (tweet) {
+    //use moment.js to show time in appropiate format
+    let $tweetTime = moment(tweet.created_at).fromNow();
+    let $tweet = $('<article class="tweet">');
 
-// loops through tweets
-// calls createTweetElement for each tweet
-// takes return value and appends it to the tweets container
- $(document).ready(function(){
-function renderTweets(tweet) {
-  for(singleUser of tweet){
-    $('.tweets-container').prepend(createTweetElement(singleUser));
-}
-}
+    let $header = $('<header class="tweet-header">');
+    let $headerAv = $('<img class="tweet-logo">').attr('src', tweet.user.avatars.small);
+    let $user = $('<h3 class="tweet-user">').text(tweet.user.name);
+    let $handle = $('<p class="tweet-handle">').text(tweet.user.handle);
 
-//toggle form when button is clicked.
-// function buttonClick () {
-//   $('button').click(function() {
-//   $('.new-tweet').slideToggle( "slow", function()){
-//     $("textarea").focus();
-//   };
-// });
-// }
-//function to add database tweets onto page with appropiate CSS properties
-function createTweetElement (tweet) {
-var $tweetTime = moment(tweet.created_at).fromNow();
-var $tweet = $('<article class="tweet">');
+    let $body = $('<main class="tweet-body">');
+    let $bodytext = $('<p class="tweet-text">').text(tweet.content.text);
 
-var $header = $('<header class="tweet-header">');
-var $headerAv = $('<img class="tweet-logo">').attr('src', tweet.user.avatars.small);
-var $user = $('<h3 class="tweet-user">').text(tweet.user.name);
-var $handle = $('<p class="tweet-handle">').text(tweet.user.handle);
+    let $footer = $('<footer class="tweet-footer">');
+    let $buttons = $('<span class="tweet-buttons">')
+      .append($('<img>').attr('src', '/images/retweetblack.png'))
+      .append($('<img>').attr('src', '/images/blackheart.png'))
+      .append($('<img>').attr('src', '/images/flagpole.png'));
+    let $footerTime = $('<p class="tweet-timestamp">').text($tweetTime);
 
-var $body = $('<main class="tweet-body">');
-var $bodytext = $('<p class="tweet-text">').text(tweet.content.text);
+    //add header/body/footer to tweet
+    $tweet.append($header).append($body).append($footer);
+    $body.append($bodytext);
+    $header.append($headerAv).append($user).append($handle);
+    $footer.append($buttons).append($footerTime);
 
-var $footer = $('<footer class="tweet-footer">');
-var $buttons = $('<span class="tweet-buttons">')
-  .append($('<img>').attr('src', '/images/retweetblack.png'))
-  .append($('<img>').attr('src', '/images/blackheart.png'))
-  .append($('<img>').attr('src', '/images/flagpole.png'));
-var $footerTime = $('<p class="tweet-timestamp">').text($tweetTime);
+    return $tweet;
+  }
+  // renderTweets(data);
 
-//add header/body/footer to tweet
- $tweet.append($header).append($body).append($footer);
- $body.append($bodytext);
- $header.append($headerAv).append($user).append($handle);
- $footer.append($buttons).append($footerTime);
+  // loops through tweets
+  // calls createTweetElement for each tweet
+  // takes return value and prepends it to the tweets container
+  function renderTweets(tweet) {
+    for(singleUser of tweet){
+      $('.tweets-container').prepend(createTweetElement(singleUser));
+    }
+  }
 
-   return $tweet;
-
-};
-// renderTweets(data);
-
-//form submission using jQuery and Ajax
-  $("#twitter-form").on("submit", function(event) {
-    event.preventDefault();
-  var maxCount = 140;
-  var currentValue = maxCount - $('textarea').val().length;
-console.log(maxCount === currentValue);
-  if(maxCount === currentValue) {
-    alert("you need input!");
-  } else if (currentValue < 0) {
-    alert("Too long");
-  } else {
+  //function to fetch tweets
+  function loadTweets() {
     $.ajax({
-      type: 'POST',
-      url:  '/tweets',
-      data: $(this).serialize(),
-      success: function() {
-         $('.tweets-container').empty();
-        $('textarea').val('');
-        loadTweets().faceIn();
+      type: 'GET',
+      url: '/tweets',
+      success: function(tweet){
+        renderTweets(tweet);
       }
     });
-
   }
+  loadTweets();
+
+  /////////////////////////////////////////////////////////////
+  ///////// jQuery Events
+  /////////////////////////////////////////////////////////////
+
+  //click event, highlight text area when clicked
+  $('.nav-button').click(function() {
+    $('.new-tweet').slideToggle("slow", function(){
+      $("textarea").focus();
+    });
+  });
+
+  //Form submission. if empty or > 140 characters give error
+  // Else, load tweets to the page using AJAX
+  $("#twitter-form").on("submit", function(event) {
+    event.preventDefault();
+    let maxCount = 140;
+    let currentValue = maxCount - $('textarea').val().length;
+    console.log(maxCount === currentValue);
+    if(maxCount === currentValue) {
+      alert("You must type something! Get creative!");
+    } else if (currentValue < 0) {
+      alert("Oops, Too many characters! Shorten your text. ");
+    } else {
+      $.ajax({
+        type: 'POST',
+        url: '/tweets',
+        data: $(this).serialize(),
+        success: function() {
+          $('.tweets-container').empty();
+          $('textarea').val('');
+          loadTweets();
+        }
+      });
+    }
+  });
+
+
 });
-
-
-//function to fetch tweets
-
-function loadTweets() {
-  $.ajax({
-    type: 'GET',
-    url: '/tweets',
-    // data: $(this),
-    success: function(tweet){
-    renderTweets(tweet)
-  }
-});
-  }
-loadTweets();
-
-
-});
-
-
-
-
-
-
-
-
-
