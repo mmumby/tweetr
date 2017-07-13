@@ -62,9 +62,14 @@ $(document).ready(function(){
 
   //click event, highlight text area when clicked
   $('.nav-button').click(function() {
-    $('.new-tweet').slideToggle("slow", function(){
+      $('.new-tweet').slideToggle("slow", function(){
       $("textarea").focus();
-    });
+      });
+  });
+
+//create class to manipulate css in focus state
+  $('textarea').bind('focus blur', function (){
+    $(this).toggleClass('button-focus');
   });
 
   //Form submission. if empty or > 140 characters give error
