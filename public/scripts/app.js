@@ -33,7 +33,6 @@ $(document).ready(function(){
 
     return $tweet;
   }
-  // renderTweets(data);
 
   // loops through tweets
   // calls createTweetElement for each tweet
@@ -67,12 +66,12 @@ $(document).ready(function(){
       });
   });
 
-//create class to manipulate css in focus or blur state
+//create class to manipulate css of textarea depending if on focus or blur.
   $('textarea').bind('focus blur', function (){
     $(this).toggleClass('button-focus');
   });
 
-  //Form submission. if empty or > 140 characters give error
+  //Form submission. if empty or > 140 characters give error (Via $.flash plugin)
   // Else, load tweets to the page using AJAX
   $("#twitter-form").on("submit", function(event) {
     event.preventDefault();
@@ -80,9 +79,9 @@ $(document).ready(function(){
     let currentValue = maxCount - $('textarea').val().length;
     console.log(maxCount === currentValue);
     if(maxCount === currentValue) {
-      alert("You must type something! Get creative!");
+      $.flash('OOps! Must enter something. Get creative!');
     } else if (currentValue < 0) {
-      alert("Oops, Too many characters! Shorten your text. ");
+      $.flash('OOps, Tweet is too Long!');
     } else {
       $.ajax({
         type: 'POST',
@@ -91,6 +90,7 @@ $(document).ready(function(){
         success: function() {
           $('.tweets-container').empty();
           $('textarea').val('');
+          $('.counter').html('140');
           loadTweets();
         }
       });

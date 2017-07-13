@@ -39,6 +39,7 @@ padding: 5px 10px;
   overflow: hidden;
   cursor: pointer;
 }
+
 .new-tweet h2 {
   border-bottom: 1px solid #888;
   margin: 0 auto;
@@ -47,7 +48,6 @@ padding: 5px 10px;
 
 .new-tweet form {
   padding: 1em;
-
 }
 
 .new-tweet textarea {
@@ -65,7 +65,6 @@ padding: 5px 10px;
   width: 20px;
   cursor: pointer;
 }
-
 
 .tweet-container {
   padding-top: 1em;
@@ -115,8 +114,4 @@ padding: 5px 10px;
 
 .tweet-user {
   font-size: larger;
-}
-
-#tweet-input:focus {
-
 }
