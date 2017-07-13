@@ -9,6 +9,7 @@ padding: 5px 10px;
   color: red;
 }
 
+
 .new-tweet {
   background: #eee;
   border-radius: 8px;
@@ -83,12 +84,13 @@ padding: 5px 10px;
   height: 60px;
   padding: 0.5em;
   position: relative;
-  width: 70px;
+  width: 60px;
 }
 
 .tweet-text {
   line-height: 2;
   padding: 0.5em 0.5em;
+  overflow-wrap: break-word;
 
 }
 
