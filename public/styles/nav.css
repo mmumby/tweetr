@@ -32,7 +32,6 @@
 #nav-bar .nav-button {
   opacity: 0.9;
   color: #00a087;
-  font-size: larger;
   background: #eee;
   border: 1px solid #004a4a;
   border-radius: 5px;
@@ -45,4 +44,12 @@
 #nav-bar .nav-button:hover {
   opacity: 1;
   cursor: pointer;
+}
+/* remove Tweeter title if screen is smaller than 400 */
+/* In order to keep compose button in header */
+@media (max-width: 400px) {
+    #nav-bar .header
+    {
+        display: none;
+    }
 }

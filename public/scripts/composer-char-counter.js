@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
   var maxCount = 140;
-  $('textarea').on('keyup', function(){
+  $('textarea').on('keydown', function(){
     var currentValue = (maxCount - this.value.length);
     var countDown = this.value.length;
 

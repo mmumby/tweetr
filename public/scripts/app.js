@@ -41,6 +41,7 @@ $(document).ready(function(){
     for(singleUser of tweet){
       $('.tweets-container').prepend(createTweetElement(singleUser));
     }
+
   }
 
   //function to fetch tweets
@@ -60,9 +61,11 @@ $(document).ready(function(){
   /////////////////////////////////////////////////////////////
 
   //click event, highlight text area when clicked
+  //Go to top of page when button is clicked
   $('.nav-button').click(function() {
+    $('body').animate({scrollTop:0}, 'slow');
       $('.new-tweet').slideToggle("slow", function(){
-      $("textarea").focus();
+      $("textarea").focus()
       });
   });
 
