@@ -17,9 +17,9 @@ article:hover  {
 }
 
 .counter {
-float: right;
-font-style: italic;
-padding: 5px 10px;
+  float: right;
+  font-style: italic;
+  padding: 5px 10px;
 }
 
 .counter-negative {
@@ -32,9 +32,9 @@ padding: 5px 10px;
   margin: 0 auto;
 }
 .new-tweet input {
-  border-radius: 2px;
   background-color: #d1dadc;
   border: 1px #869a9c;
+  border-radius: 2px;
   color: #424040;
   overflow: hidden;
   cursor: pointer;
@@ -57,23 +57,23 @@ padding: 5px 10px;
 }
 
 .tweet-buttons *{
-  float: right;
-  opacity: 0;
-  display: inline-block;
-  margin: 0px 2px;
-  height: 20px;
-  width: 20px;
   cursor: pointer;
+  display: inline-block;
+  float: right;
+  height: 20px;
+  margin: 0px 2px;
+  opacity: 0;
+  width: 20px;
 }
 
 .tweet-container {
-  padding-top: 1em;
   padding-bottom: 1em;
+  padding-top: 1em;
 }
 
 .tweet-footer {
   border-top: 1px solid #ddd;
- padding: 1em;
+  padding: 1em;
 }
 
 .tweet-handle {
@@ -108,8 +108,8 @@ padding: 5px 10px;
 }
 
 .tweet-timestamp {
-  margin: 0;
   font-size: smaller;
+  margin: 0;
 }
 
 .tweet-user {

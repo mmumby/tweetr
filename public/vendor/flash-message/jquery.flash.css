@@ -4,8 +4,8 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    background-color: #111;
-    color: #FFF;
+    background-color: #ddd;
+    color: #424040;
     width: 915px;
     padding: 25px 20px;
     margin: 0;
@@ -35,7 +35,8 @@
 }
 #flash div
 {
-    color: #fff;
+    color: #424040;
+    font-size: larger;
 }
 
 #flash a

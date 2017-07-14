@@ -12,6 +12,10 @@
   z-index: 1;
 }
 
+#nav-bar .nav-button i {
+  vertical-align: middle;
+}
+
 #nav-bar .header {
   float: left;
   font-size: 2em;
@@ -36,7 +40,6 @@
   margin-top: 10px;
   font-weight: 400;
   padding: 0 10px;
-
 }
 
 #nav-bar .nav-button:hover {
