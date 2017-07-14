@@ -2,7 +2,7 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-The starter code was provided to students in order to build upon and practice their front end skills using HTML, CSS, JS, jQuery and AJAX. As well as their back end skills using Node, Express and MongoDB.
+The starter code was provided to students in order to build upon and practice their front-end skills using HTML, CSS, JS, jQuery and AJAX. As well as their back-end skills using Node, Express and MongoDB.
 
 ## Dependencies
 
@@ -11,9 +11,10 @@ The starter code was provided to students in order to build upon and practice th
 - Body-Parser
 - Chance
 - MongoDB
-- Flash-Message
 
 ## Final Product
+
+!["Screenshot of tweeter page"](https://github.com/mmumby/tweetr/blob/master/public/docs/tweeter-photo.png)
 
 ## Getting Started
 
